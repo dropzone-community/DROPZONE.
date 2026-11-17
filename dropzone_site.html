@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090b18">
+<title>DROPZONE — La communauté gaming</title>
+<style>
+:root{--bg:#090b18;--panel:#11152a;--panel2:#171c36;--purple:#8b4dff;--cyan:#28d8ff;--text:#f5f5ff;--muted:#aeb4d1;--line:#34305d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 75% 0%,#26134b 0,transparent 36%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+header{position:sticky;top:0;z-index:10;background:#090b18ed;backdrop-filter:blur(14px);border-bottom:1px solid #39305e}
+.nav{max-width:1180px;margin:auto;padding:14px 22px;display:flex;align-items:center;gap:24px}.brand{font-size:27px;font-weight:950;font-style:italic;letter-spacing:-1.5px;white-space:nowrap}.brand b{color:var(--purple)}.brand span{color:#fff}
+nav{display:flex;gap:20px;margin-left:auto;align-items:center}nav a{font-size:13px;color:#d8d9ec;font-weight:700}nav a:hover{color:var(--cyan)}
+.join,.cta{border:0;border-radius:10px;background:linear-gradient(110deg,#6726e9,#a34cff);color:white;font-weight:850;padding:12px 18px;box-shadow:0 0 22px #8b4dff55}.menu{display:none;background:none;border:1px solid var(--line);color:white;border-radius:8px;padding:8px}
+main{max-width:1180px;margin:auto;padding:0 22px}
+.hero{min-height:450px;position:relative;overflow:hidden;display:flex;align-items:center;padding:55px 5%;border-bottom:1px solid #35245f}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#090b18 0%,#090b18ee 36%,#090b1850 70%,#090b1860),radial-gradient(ellipse at 76% 40%,#7b31ff99,transparent 35%),radial-gradient(ellipse at 70% 85%,#007dff66,transparent 40%)}
+.orb{position:absolute;width:300px;height:300px;border-radius:50%;right:12%;top:50px;background:radial-gradient(circle at 35% 30%,#fff 0 1%,#b78bff 3%,#7b39ff 18%,#23105d 48%,#090b18 70%);box-shadow:0 0 90px #793cff88}
+.orb:after{content:"";position:absolute;width:440px;height:100px;border:2px solid #50d9ff99;border-radius:50%;transform:rotate(-23deg);left:-70px;top:105px;box-shadow:0 0 25px #26cfff88}
+.hero-content{position:relative;z-index:1;max-width:620px}.eyebrow{color:var(--cyan);font-weight:900;letter-spacing:3px;font-size:12px}.hero h1{font-size:clamp(46px,8vw,88px);line-height:.94;margin:12px 0 18px;font-weight:1000;letter-spacing:-4px;font-style:italic}.hero h1 span{color:var(--purple);text-shadow:0 0 30px #8b4dff88}.hero h2{font-size:clamp(19px,3vw,27px);margin:0 0 12px}.hero p{color:var(--muted);line-height:1.65;max-width:510px}.cta{display:inline-block;margin-top:15px}
+.section{padding:34px 0}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:17px}.section h2{font-size:23px;margin:0}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.tile,.card{background:linear-gradient(145deg,#171b35,#0e1225);border:1px solid var(--line);border-radius:14px;overflow:hidden}.tile{padding:20px;min-height:135px;transition:.2s}.tile:hover,.card:hover{transform:translateY(-3px);border-color:var(--purple);box-shadow:0 10px 35px #6528c522}.emoji{font-size:29px}.tile h3{margin:12px 0 5px;font-size:16px}.tile p,.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.content-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.card{padding:17px}.card h3{margin:0 0 8px}.tag{display:inline-block;border:1px solid #6744b2;background:#28194b;color:#d8c7ff;padding:4px 8px;border-radius:20px;font-size:11px;font-weight:800;margin-bottom:10px}
+.news-item,.event{display:flex;gap:12px;padding:12px 0;border-top:1px solid #292d4a}.news-item:first-of-type,.event:first-of-type{border-top:0}.mini{width:52px;height:52px;flex:none;border-radius:10px;background:linear-gradient(135deg,#6d32db,#17bfe8);display:grid;place-items:center;font-size:23px}.news-item strong,.event strong{display:block;font-size:13px}.news-item small,.event small{color:var(--muted);font-size:12px}
+.map-art{height:130px;border-radius:10px;background:linear-gradient(135deg,#1c7da0,#713be0 50%,#ed6ac8);display:grid;place-items:center;font-size:48px;margin:10px 0}
+.notice{border:1px solid #4b3a76;background:#17132c;padding:16px;border-radius:12px;color:#c7c3df;font-size:12px;line-height:1.6}
+footer{border-top:1px solid #30244f;margin-top:25px;padding:25px 22px;color:var(--muted);font-size:12px}footer .foot{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:30;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-box{background:#151932;border:1px solid var(--purple);border-radius:16px;padding:24px;max-width:440px;width:100%;box-shadow:0 0 50px #702cff55}.modal-box h2{margin-top:0}.modal-box input,.modal-box textarea{width:100%;padding:12px;margin:7px 0 12px;background:#090d20;color:white;border:1px solid #46406e;border-radius:8px}.modal-box button{margin-right:8px}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#211641;border:1px solid var(--purple);padding:12px 18px;border-radius:10px;display:none;z-index:40}
+@media(max-width:800px){nav{display:none;position:absolute;top:65px;left:12px;right:12px;background:#10142a;border:1px solid var(--line);border-radius:12px;padding:18px;flex-direction:column;align-items:flex-start}nav.show{display:flex}.menu{display:block;margin-left:auto}.join{display:none}.hero{min-height:420px}.orb{right:-110px;top:100px;opacity:.55}.grid{grid-template-columns:repeat(2,1fr)}.content-grid{grid-template-columns:1fr}.hero h1{letter-spacing:-2px}}
+@media(max-width:420px){main{padding:0 14px}.nav{padding:12px 14px}.brand{font-size:23px}.grid{gap:9px}.tile{padding:14px}.hero{padding:40px 4%}.hero p{font-size:14px}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<a class="brand" href="#accueil"><span>◈</span> DROP<b>ZONE</b></a>
+<button class="menu" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
+<nav id="nav"><a href="#accueil">Accueil</a><a href="#rubriques">Rubriques</a><a href="#actualites">Actualités</a><a href="#maps">Maps</a><a href="#evenements">Événements</a><a href="#communaute">Communauté</a></nav>
+<button class="join" onclick="openModal()">Rejoindre</button>
+</div></header>
+<main>
+<section class="hero" id="accueil"><div class="orb"></div><div class="hero-content">
+<div class="eyebrow">LA COMMUNAUTÉ GAMING</div>
+<h1>WELCOME TO<br><span>DROPZONE.</span></h1>
+<h2>Découvre. Progresse. Partage.</h2>
+<p>Retrouve les joueurs, explore des créations, découvre les actualités et partage ta passion du gaming dans un même espace.</p>
+<a class="cta" href="#rubriques">Explorer DROPZONE&nbsp; →</a>
+</div></section>
+<section class="section" id="rubriques"><div class="section-head"><div><h2>Explore DROPZONE</h2><p>Les rubriques de la communauté</p></div></div>
+<div class="grid">
+<a class="tile" href="#communaute"><div class="emoji">🎮</div><h3>Profils joueurs</h3><p>Découvre les membres et leurs univers.</p></a>
+<a class="tile" href="#communaute"><div class="emoji">🏆</div><h3>Classements</h3><p>Les défis et classements communautaires.</p></a>
+<a class="tile" href="#maps"><div class="emoji">🗺️</div><h3>Maps à découvrir</h3><p>Explore les créations de la communauté.</p></a>
+<a class="tile" href="#evenements"><div class="emoji">📅</div><h3>Événements</h3><p>Ne manque pas les rendez-vous gaming.</p></a>
+</div></section>
+<section class="section" id="actualites"><div class="section-head"><div><h2>Actualités</h2><p>Les dernières infos publiées par DROPZONE</p></div></div>
+<div class="content-grid">
+<article class="card"><span class="tag">COMMUNAUTÉ</span><h3>Bienvenue sur DROPZONE</h3><p>La plateforme démarre ! Découvre les rubriques et propose tes idées pour les prochaines fonctionnalités.</p></article>
+<article class="card"><span class="tag">À VENIR</span><h3>Les nouveautés arrivent</h3><p>Cette section accueillera les annonces et actualités vérifiées. Les dates seront ajoutées après confirmation.</p></article>
+<article class="card"><span class="tag">PARTICIPE</span><h3>Fais évoluer le projet</h3><p>Tu as une idée de rubrique ou de fonctionnalité ? Envoie une suggestion à l'équipe.</p></article>
+</div></section>
+<section class="section" id="maps"><div class="section-head"><div><h2>Maps à découvrir</h2><p>Une sélection à compléter avec des codes vérifiés</p></div></div>
+<div class="content-grid">
+<article class="card"><div class="map-art">🌌</div><span class="tag">EXPLORATION</span><h3>Mondes à explorer</h3><p>Ajoute ici une map d'exploration et son code créatif vérifié.</p></article>
+<article class="card"><div class="map-art">⚡</div><span class="tag">ENTRAÎNEMENT</span><h3>Zone d'entraînement</h3><p>Ajoute ici une map d'entraînement et les informations utiles.</p></article>
+<article class="card"><div class="map-art">🎯</div><span class="tag">MINI-JEUX</span><h3>Défis entre amis</h3><p>Ajoute ici une map de mini-jeux et son code créatif vérifié.</p></article>
+</div></section>
+<section class="section" id="evenements"><div class="section-head"><div><h2>Événements</h2><p>Les rendez-vous annoncés par la communauté</p></div></div>
+<div class="card">
+<div class="event"><div class="mini">🏆</div><div><strong>Tournois communautaires</strong><small>Les annonces seront publiées ici après vérification.</small></div></div>
+<div class="event"><div class="mini">👥</div><div><strong>Rencontres entre joueurs</strong><small>Propose une activité encadrée à la communauté.</small></div></div>
+<div class="event"><div class="mini">✨</div><div><strong>Défis créatifs</strong><small>De nouveaux défis pourront être ajoutés au fil du temps.</small></div></div>
+</div></section>
+<section class="section" id="communaute"><div class="section-head"><div><h2>La communauté DROPZONE</h2><p>Un espace accueillant, respectueux et modéré</p></div></div>
+<div class="card"><h3>Une idée pour DROPZONE ?</h3><p>Les suggestions sont les bienvenues. Pour cette première version, contacte l'équipe via le formulaire ci-dessous (aucun mot de passe ni identifiant de jeu ne doit être demandé).</p><button class="cta" onclick="openModal()">Envoyer une suggestion</button></div>
+</section>
+<div class="notice">DROPZONE est un projet communautaire indépendant, non officiel et non affilié à Epic Games. Fortnite est une marque d'Epic Games. Cette maquette utilise une identité graphique originale et ne représente pas un service officiel.</div>
+</main>
+<footer><div class="foot"><strong class="brand">DROP<span>ZONE</span></strong><span>Découvre. Progresse. Partage.</span><span>Projet communautaire indépendant · Version 1.0</span></div></footer>
+<div class="modal" id="modal"><div class="modal-box"><h2>Une suggestion pour DROPZONE</h2><p style="color:#aeb4d1;font-size:13px">Partage une idée pour améliorer le site. Ne communique aucune information personnelle.</p>
+<form id="suggestion"><label for="idea">Ta suggestion</label><textarea id="idea" rows="4" required maxlength="500" placeholder="J'aimerais voir..."></textarea><button class="cta" type="submit">Envoyer</button><button type="button" onclick="closeModal()" style="background:none;border:1px solid #555;color:white;border-radius:9px;padding:12px">Fermer</button></form></div></div>
+<div id="toast">Merci pour ta suggestion ! Elle est affichée localement dans cette démo.</div>
+<script>
+const nav=document.getElementById('nav');document.getElementById('menuBtn').onclick=()=>nav.classList.toggle('show');
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('show')));
+function openModal(){document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+document.getElementById('suggestion').addEventListener('submit',e=>{e.preventDefault();closeModal();document.getElementById('toast').style.display='block';setTimeout(()=>document.getElementById('toast').style.display='none',3500);e.target.reset()});
+</script>
+</body></html>
